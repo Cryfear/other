@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var array = ['капуста', 'шаболда', 'матрица', 'уебище'];
+        var random_word = array[Math.floor(Math.random() * array.length)];
+        var user_symbol = '';
+        var empty_word = [];
+        var join_word = '';
+        var remain = 5;
+        for(var i = 0; i < random_word.length; i++) {
+            empty_word[i] = ' _';
+        }
+
+        while(join_word != random_word) {
+            alert(empty_word.join(' '));
+            alert("У вас: " + remain + " попыток!");
+            user_symbol = prompt("Введите букву: ");
+            user_symbol = user_symbol.toLowerCase();
+            for(var i = 0; i < random_word.length; i++) {
+                if(user_symbol == random_word[i]) {
+                    break;
+                }
+                else {
+                    remain--;
+                    break;
+                }
+            }
+            if(remain == 1) {
+                alert("Попытки закончились!")
+                break;
+            }
+            if(user_symbol == undefined) {
+                alert("Не хочешь играть? :(")
+                break;
+            }
+            else if(user_symbol.length>1) {
+                alert("Введите одну букву!");
+            }
+            else if(user_symbol.length == 1) {
+                for(var i = 0; i < random_word.length; i++) {
+                    if(user_symbol == random_word[i]) {
+                        empty_word[i] = user_symbol;
+                    }
+                }
+            }
+            join_word = empty_word.join('');  
+        }
+        if(join_word == random_word) {
+            alert("Ты победил!" + " словом было: " + join_word);
+        }
+    </script>
+</body>
+</html>

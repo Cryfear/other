@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script src="three.js"></script>
+    <script>
+      let canvas = document.getElementById("canvas");
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+
+      canvas.setAttribute("width", width);
+      canvas.setAttribute("height", height);
+
+      let renders = new THREE.WebGLRenderer({ canvas: canvas });
+      renders.setClearColor(0x000000);
+
+      let scene = new THREE.Scene();
+      let camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 5000); // угл обзора по вертикали, соотношение, расстояние откуда видно и до куда
+      camera.position.set(0, 0, 1000); // x, y, z
+
+      let light = new THREE.AmbientLight(0xffffff); // цвет света
+      let geometry = new THREE.SphereGeometry(300, 10, 10); // радиус, кол-во фрагментов по высоте и ширине
+      let material = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        vertexColors: THREE.FaceColors
+      });
+
+      for(let i = 0; i < geometry.faces.length; i++) {
+        geometry.faces[i].color.setRGB(Math.random(), Math.random(), Math.random());
+      }
+
+      let mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      function loop() {
+        mesh.rotation.y += Math.PI / 1000;
+        renders.render(scene, camera); // зарендерить картинку
+        requestAnimationFrame(function() {
+          loop();
+        });
+      }
+
+      loop();
+    </script>
+  </body>
+</html>

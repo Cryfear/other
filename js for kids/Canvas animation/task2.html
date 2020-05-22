@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Прыгающий мяч</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <script>
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      
+      var width = canvas.width;
+      var height = canvas.height;
+      var sex = true;
+      var Ball = function() {
+        this.x = 100;
+        this.y = 100;
+        this.xSpeed = Math.floor(Math.random() * 5 - 2.5);
+        this.ySpeed = Math.floor(Math.random() * 5 - 5);     
+      };
+
+      var circle = function(x, y, radius, fillCircle) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+        if (fillCircle) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
+      };
+
+      Ball.prototype.draw = function() {
+        
+        circle(this.x, this.y, 3, true);
+        if(sex) {
+          for(var i = 0; i < colors.length; i++) {
+            balls[i].color();
+          }
+        }
+        sex = false;
+      };
+
+      Ball.prototype.color = function() {
+        ctx.beginPath();
+        ctx.fillStyle = colors[Math.floor(Math.random() * balls.length)];
+        ctx.fill();
+      }
+
+      Ball.prototype.move = function() {
+        this.x += this.xSpeed;
+        this.y += this.ySpeed;
+      };
+
+      Ball.prototype.checkCollision = function() {
+        if (this.x < 0 || this.x > width) {
+          this.xSpeed = -this.xSpeed;
+        }
+        if (this.y < 0 || this.y > height) {
+          this.ySpeed = -this.ySpeed;
+        }
+      };
+
+      Ball.prototype.Color = function(i) {
+        for(var i = 0; i < balls.length; i++) {
+          
+        }
+      }
+      var colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"];
+      var ball = new Ball();
+      var balls = []; // создаём массив
+      for (var i = 0; i < 10; i++) { // заполняем массив.
+        balls.push( new Ball() );
+      }
+  
+      
+
+      setInterval(function() {
+        ctx.clearRect(0, 0, width, height);
+        for (var i = 0; i < balls.length; i++) { // цикл по шарикам вместо обработки одного шарика
+          balls[i].draw();
+          balls[i].move();
+          balls[i].checkCollision();
+        }
+          ctx.strokeRect(0, 0, width, height);
+      }, 15);
+    </script>
+  </body>
+</html>

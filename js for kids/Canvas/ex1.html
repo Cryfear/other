@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script>
+      // var ctx = canvas.getContext("2d"); 
+      // ctx.lineWidth = 4;
+
+      // ctx.fillStyle = "Blue";
+      // ctx.strokeStyle = "Black";
+
+      // ctx.beginPath(); 
+      // ctx.strokeRect(50, 5, 20, 20);
+      // ctx.fillRect( 11.5, 11.5, 97, 17);
+      
+      // ctx.moveTo(60, 24);
+      // ctx.lineTo(60, 65);
+      // ctx.arc(50, 50, 20, 0, Math.PI / 2, false); 
+      // ctx.stroke(); 
+      // var circle = function (x, y, radius, fillCircle, color) {
+      //   if(fillCircle == true) {
+      //     ctx.fillStyle = color;
+      //     ctx.beginPath(); 
+      //     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+      //     ctx.fill();
+      //   }
+      //   else {
+      //     ctx.beginPath();  
+      //     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+      //     ctx.stroke(); 
+      //   }
+      // };
+
+      var canvas = document.getElementById("canvas"); 
+      var ctx = canvas.getContext("2d"); 
+      ctx.lineWidth = 4;
+      // ctx.fillStyle = "Blue";
+      // ctx.lineWidth = 2; ctx.strokeStyle = "Green"; 
+      // ctx.beginPath(); 
+      // ctx.arc(50, 50, 20, 0, Math.PI / 2, false); 
+      // ctx.stroke(); ctx.beginPath(); 
+      // ctx.arc(100, 50, 20, 0, Math.PI * 1.5, false); 
+      // ctx.stroke(); ctx.beginPath(); 
+      // ctx.arc(150, 50, 20, 0, Math.PI * 2, false); 
+      // ctx.stroke();
+      var circle = function (x, y, radius, fillCircle, color) {
+        if(fillCircle == true) {
+          ctx.fillStyle = color;
+          ctx.beginPath(); 
+          ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+          ctx.fill();
+        }
+        else {
+          ctx.beginPath();  
+          ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+          ctx.stroke(); 
+        }
+      };
+      function snowman(x,y) {
+        circle(x, y, 30);
+        circle(x - 10, y - 5, 5, true, "Black");
+        circle(x + 10, y - 5, 5, true, "Black");
+        circle(x, y + 5, 5, true, "Orange");
+        circle(x, y + 70, 40);
+        circle(x, y + 50, 5, true, "Black");
+        circle(x, y + 70, 5, true, "Black");
+        circle(x, y + 90, 5, true, "Black");
+      }
+      snowman(100,50);
+    </script>
+  </body>
+</html>

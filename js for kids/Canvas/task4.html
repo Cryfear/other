@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script>
+      var canvas = document.getElementById("canvas"); 
+      var ctx = canvas.getContext("2d"); 
+      ctx.strokeStyle = "Black";
+      ctx.lineWidth = "4";
+      ctx.beginPath();
+      ctx.strokeRect(50, 5, 20, 20);
+      ctx.moveTo(60, 24);
+      ctx.lineTo(60, 65);
+      ctx.moveTo(60, 45);
+      ctx.lineTo(35, 35);
+      ctx.moveTo(60, 45);
+      ctx.lineTo(85, 35);
+      ctx.moveTo(60, 65);
+      ctx.lineTo(40, 90);
+      ctx.moveTo(60, 65);
+      ctx.lineTo(80, 90);
+      ctx.stroke();
+    </script>
+  </body>
+</html>

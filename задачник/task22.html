@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = [
+      {name: "Василий", age: 32},
+      {name: "Наталья", age: 17},
+      {name: "Джон", age: 25}
+    ]
+    function extactProp(obj, prop) {
+      let arr = [];
+      for(let i = 0; i < obj.length; i++) {
+        arr.push(obj[i][prop])
+      }
+      return arr;
+    }
+  </script>
+</body>
+</html>

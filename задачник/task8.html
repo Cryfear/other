@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let thousands_arr = [
+        "",
+        "одна тысяча",
+        "две тысячи",
+        "три тысячи",
+        "четыре тысячи",
+        "пять тысяч",
+        "шесть тысяч",
+        "семь тысяч",
+        "восемь тысяч",
+        "девять тысяч"
+      ];
+      let hundreds_arr = [
+        "",
+        "сто",
+        "двесте",
+        "триста",
+        "четыреста",
+        "пятьсот",
+        "шестьсот",
+        "семсот",
+        "весемсот",
+        "девятсот"
+      ];
+      let seconds_arr = [
+        "",
+        [
+          "десять",
+          "одинадцать",
+          "двянадцать",
+          "тринадцать",
+          "четырнадцать",
+          "пятнадцать",
+          "шеснадцать",
+          "семнадцать",
+          "восемнадцать",
+          "девятнадцать"
+        ],
+        "двадцать",
+        "тридцать",
+        "сорок",
+        "пятьдесят",
+        "шестьдесят",
+        "семьдесят",
+        "восемдесят",
+        "девяносто"
+      ];
+      let ones_arr = [
+        "",
+        "один",
+        "два",
+        "три",
+        "четыре",
+        "пять",
+        "шесть",
+        "семь",
+        "восемь",
+        "девять"
+      ];
+      function getPhraseByNumber(num) {
+        num += ""; // превращаем в строку
+        let str = ""; // сюда будет выводиться результат
+        if (num > 999 && num < 9999) {
+          let thousand = num[0]; // чтобы можно было удобно работать с массивами
+          let hundred = num[1];
+          let second = num[2];
+          let one = num[3];
+          str += thousands_arr[thousand] + ' ';
+          str += hundreds_arr[hundred] + ' ';
+          if (second == 1) {
+            str += seconds_arr[1][one] + ' ';
+          } else {
+            str += seconds_arr[second]+ ' ';
+            str += ones_arr[one] +' ';
+          }
+          
+        } else if (num > 99 && num < 1000) {
+          let hundred = num[0];
+          let second = num[1];
+          let one = num[2];
+          str += hundreds_arr[hundred] + ' ';
+          if (second == 1) {
+            str += seconds_arr[1][one] + ' ';
+          } else {
+            str += seconds_arr[second]+ ' ';
+            str += ones_arr[one] +' ';
+          }
+        } else if (num > 9 && num < 100) {
+          let second = num[0];
+          let one = num[1];
+          if (second == 1) {
+            str += seconds_arr[1][one] + ' ';
+          } else {
+            str += seconds_arr[second]+ ' ';
+            str += ones_arr[one] +' ';
+          }
+        } else if (num > 0 && num < 10) {
+          let one = num[0];
+          str += ones_arr[one] + ' ';
+        }
+        return str = str.replace(/ +/g, ' ').trim();
+      }
+    </script>
+  </body>
+</html>

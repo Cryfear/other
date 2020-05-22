@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script>
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.fillRect(75, 0, 50, 50);
+      ctx.fillRect(95, 50, 10, 20);
+      ctx.fillRect(40, 70, 120, 10);
+      ctx.fillRect(75, 80, 50, 50);
+      ctx.fillRect(65, 80, 10, 100);
+      ctx.fillRect(125, 80, 10, 100);
+    </script>
+  </body>
+</html>

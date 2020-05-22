@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype.mul = function() {
+      for(let i = 0; i < this.length; i++) {
+        this[i] = this[i] * 2;
+      }
+      return this;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function phone(num) {
+        let arr = ["+", "_", "_", "_", "_", "_", "_", "_", "_", "_","_", "_", "_"];
+        let arr2 = num.split('');
+        for(let i = 0; i < arr.length; i++) {
+          if(arr2[0] != '+') {
+            break;
+          }
+          else if(arr2[i] == '+'){
+            continue;
+          }
+          if(isNaN(+arr2[i])) {
+            break;
+          }
+          else {
+            arr[i] = arr2[i];
+          }
+        }
+        return arr.join("");
+      }
+    </script>
+  </body>
+</html>

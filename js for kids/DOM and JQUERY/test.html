@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <h1 id="main-heading">SEX</h1>
+    <script>
+        var newHeadingText = prompt("Введите новый заголовок:");
+        $("#main-heading").text(newHeadingText);
+        $("body").append("<p>Это новый параграф</p>");
+        //$("h1").fadeIn(2000).fadeOut(3000);
+        //$("h1").slideDown(1000).slideUp(1000);
+        //$("h1").hide(3000).show(3000); тоже самое, что и slideDown and slideUp
+    </script>
+</body>
+</html>

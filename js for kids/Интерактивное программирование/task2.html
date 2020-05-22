@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <h1>sex</h1>
+    <script>
+        var lefts = 0, tops = 0, nav = "right", syka = 0, pluss = 1;
+        function move(event) {
+            $('h1').click(function () {
+                syka += 1;
+                pluss += 1;
+                if(syka >= 10) {
+                    clearInterval(times);
+                }
+            })
+
+            if(nav == "right") {
+                if(lefts >= 200) {
+                    nav = "down";
+                    lefts = 200;  
+                }
+                else {
+                    $('h1').offset({
+                        left: lefts = lefts + pluss
+                    })
+                }
+            }
+            if(nav == "down") {
+                $('h1').offset({
+                    top: tops = tops + pluss
+                })
+                if(tops >= 200) {
+                    tops = 200;
+                    nav = "left";
+                }
+            }
+            if(nav == "left") {
+                $('h1').offset({
+                    left: lefts = lefts - pluss
+                })
+                if(lefts <= 0) {
+                    lefts = 0;
+                    nav = "top";
+                }
+            }
+            if(nav == "top") {
+                $('h1').offset({
+                    top: tops = tops - pluss
+                })
+                if(tops <= 0) {
+                    tops = 0;
+                    nav = "right";
+                }
+            }
+        }
+        times = setInterval(move, 10);
+    </script>
+</body>
+</html>

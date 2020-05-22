@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <script>
+      // var ctx = canvas.getContext("2d");
+      // ctx.lineWidth = 4;
+
+      // ctx.fillStyle = "Blue";
+      // ctx.strokeStyle = "Black";
+
+      // ctx.beginPath();
+      // ctx.strokeRect(50, 5, 20, 20);
+      // ctx.fillRect( 11.5, 11.5, 97, 17);
+
+      // ctx.moveTo(60, 24);
+      // ctx.lineTo(60, 65);
+      // ctx.arc(50, 50, 20, 0, Math.PI / 2, false);
+      // ctx.stroke();
+      // var circle = function (x, y, radius, fillCircle, color) {
+      //   if(fillCircle == true) {
+      //     ctx.fillStyle = color;
+      //     ctx.beginPath();
+      //     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+      //     ctx.fill();
+      //   }
+      //   else {
+      //     ctx.beginPath();
+      //     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+      //     ctx.stroke();
+      //   }
+      // };
+
+      var array = ["капуста", "шаболда", "матрица", "уебище"];
+      var random_word = array[Math.floor(Math.random() * array.length)];
+      var user_symbol = "";
+      var empty_word = [];
+      var join_word = "";
+      var remain = 5;
+      var stadion = 0;
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.strokeStyle = "Black";
+      ctx.lineWidth = "4";
+      for (var i = 0; i < random_word.length; i++) {
+        empty_word[i] = " _";
+      }
+
+      while (join_word != random_word) {
+        alert(empty_word.join(" "));
+        alert("У вас: " + remain + " попыток!");
+        user_symbol = prompt("Введите букву: ");
+        user_symbol = user_symbol.toLowerCase();
+        for (var i = 0; i < random_word.length; i++) {
+          if (user_symbol == random_word[i]) {
+            break;
+          } else {
+            remain--;
+            if(stadion == 0) {
+                ctx.beginPath();
+                ctx.strokeRect(50, 5, 20, 20);
+              }
+              else if(stadion == 1) {
+                ctx.beginPath();
+                ctx.moveTo(60, 24);
+                ctx.lineTo(60, 65);
+                ctx.stroke();
+              }
+              else if(stadion == 2) {
+                ctx.beginPath();
+                ctx.moveTo(60, 45);
+                ctx.lineTo(35, 35);
+                ctx.stroke();
+              }
+              else if(stadion == 3) {
+                ctx.beginPath();
+                ctx.moveTo(60, 45);
+                ctx.lineTo(85, 35);
+                ctx.stroke();
+              }
+              else if(stadion == 4) {
+                ctx.beginPath();
+                ctx.moveTo(60, 65);
+                ctx.lineTo(40, 90);
+                ctx.stroke();
+              }
+              else if(stadion == 5) {
+                ctx.beginPath();
+                ctx.moveTo(60, 65);
+                ctx.lineTo(80, 90);
+                ctx.stroke();
+              }
+            break;
+          }
+        }
+        if (remain == 1) {
+          alert("Попытки закончились!");
+          break;
+        }
+        if (user_symbol == undefined) {
+          alert("Не хочешь играть? :(");
+          break;
+        } else if (user_symbol.length > 1) {
+          alert("Введите одну букву!");
+        } else if (user_symbol.length == 1) {
+          for (var i = 0; i < random_word.length; i++) {
+            if (user_symbol == random_word[i]) {
+              empty_word[i] = user_symbol;
+              
+              
+            }
+          }
+        }
+        join_word = empty_word.join("");
+      }
+      if (join_word == random_word) {
+        alert("Ты победил!" + " словом было: " + join_word);
+      }
+    </script>
+  </body>
+</html>

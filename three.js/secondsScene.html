@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script src="three.js"></script>
+    <script>
+      let canvas = document.getElementById("canvas");
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      let renders = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true
+      });
+
+      renders.setSize(width, height);
+      renders.setClearColor(0xffffff);
+      renders.setPixelRatio(window.devicePixelRatio); // пропорции
+
+      renders.shadowMap.enabled = true; // показ теней
+      renders.shadowMap.type = 2; // качество теней, 0 - зазубренные, начальная тень, 1 - высокий уровень, со сглаживанием, 2 - как 1, но чуть хуже
+      renders.outputEncoding = THREE.sRGBEncoding;
+
+      let scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xcce0ff);
+
+      let camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 5000);
+      camera.position.set(0, 0, 500); // x, y, z
+
+      var loader = new THREE.TextureLoader();
+      let geometry = new THREE.SphereGeometry(20, 20, 20);
+      let texture = loader.load("img/earth.jpg");
+      var material = new THREE.MeshBasicMaterial({map: texture});
+
+      let sphere = new THREE.Mesh(geometry, material);
+      sphere.position.x += 0;
+      sphere.position.y += 0;
+      sphere.position.z += 0;
+      scene.add(sphere);
+
+      let angel = 0;
+
+      scene.add(new THREE.AmbientLight(0x666666));
+      animate();
+      function animate() {
+        requestAnimationFrame(animate);
+        //sphere.rotation.y += Math.PI / 10000;
+        sphere.position.x += -3*Math.sin(angel);
+        sphere.position.z += 3*Math.cos(angel);
+        angel += Math.PI/180*2;
+        renders.render(scene, camera);
+      }
+    </script>
+  </body>
+</html>

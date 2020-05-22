@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+      var Car = function(x, y) {
+        this.x = x;
+        this.y = y;
+        this.draw();
+      };
+
+      Car.prototype.draw = function() {
+        var carHtml = '<img src="http://nostarch.com/images/car.png">';
+        this.carElement = $(carHtml);
+        this.carElement.css({
+          position: "absolute",
+          left: this.x,
+          top: this.y
+        });
+        var position = this.carElement.position();
+        $("body").append(this.carElement);
+      };
+
+      Car.prototype.moveRight = function() {
+        speed = Math.floor(Math.random() * 5);
+        this.x += speed;
+        this.carElement.css({
+          left: this.x,
+          top: this.y
+        });
+      };
+
+      Car.prototype.moveLeft = function() {
+        speed = Math.floor(Math.random() * 5);
+        this.x -= speed;
+        this.carElement.css({
+          left: this.x,
+          top: this.y
+        });
+      };
+
+      Car.prototype.moveUp = function() {
+        speed = Math.floor(Math.random() * 5);
+        this.y -= speed;
+        this.carElement.css({
+          left: this.x,
+          top: this.y
+        });
+      };
+
+      Car.prototype.moveDown = function() {
+        speed = Math.floor(Math.random() * 5);
+        this.y += speed;
+        this.carElement.css({
+          left: this.x,
+          top: this.y
+        });
+      };
+
+      var tesla = new Car(100, 20);
+      var nissan = new Car(100, 200);
+
+      var numInterval = window.setInterval(function() {
+        tesla.moveRight();
+        if (tesla.x > 1200) {
+          clearInterval(numInterval);
+        }
+      }, 5);
+      var numIntervalt = window.setInterval(function() {
+        nissan.moveRight();
+        if (nissan.x > 1200) {
+          clearInterval(numIntervalt);
+        }
+      }, 5);
+    </script>
+  </body>
+</html>

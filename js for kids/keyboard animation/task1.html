@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+
+      var speed = 5;
+      var radio = 10;
+
+      var speeds = {
+        49: "one",
+        50: "two",
+        51: "three",
+        52: "four",
+        53: "five",
+        54: "six",
+        55: "seven",
+        56: "eight",
+        57: "nine",
+        90: "z",
+        67: "c",
+        86: "v"
+      };
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var width = canvas.width;
+      var height = canvas.height;
+
+      var circle = function(x, y, radius, fillCircle) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+        if (fillCircle) {
+          ctx.fill();
+        } else {
+          ctx.stroke();
+        }
+      };
+
+      var Ball = function() {
+        this.x = width / 2;
+        this.y = height / 2;
+        this.xSpeed = 5;
+        this.ySpeed = 0;
+      };
+
+      Ball.prototype.move = function() {
+        this.x += this.xSpeed;
+        this.y += this.ySpeed;
+        if (this.x < 0 || this.x > width) {
+          this.xSpeed = -this.xSpeed;
+        }
+        if (this.y < 0 || this.y > height) {
+          this.ySpeed = -this.ySpeed;
+        }
+      };
+
+      Ball.prototype.draw = function() {
+        circle(this.x, this.y, radio, true);
+      };
+
+      Ball.prototype.setDirection = function(direction) {
+        if (direction === "up") {
+          this.xSpeed = 0;
+          this.ySpeed = -speed;
+        } else if (direction === "down") {
+          this.xSpeed = 0;
+          this.ySpeed = speed;
+        } else if (direction === "left") {
+          this.xSpeed = -speed;
+          this.ySpeed = 0;
+        } else if (direction === "right") {
+          this.xSpeed = speed;
+          this.ySpeed = 0;
+        } else if (direction === "stop") {
+          this.xSpeed = 0;
+          this.ySpeed = 0;
+        }
+      };
+
+      Ball.prototype.setSpeed = function(speek) {
+        if (speek === "one") {
+          speed = 1;
+        }
+        if (speek === "two") {
+          speed = 2;
+        }
+        if (speek === "three") {
+          speed = 3;
+        }
+        if (speek === "four") {
+          speed = 4;
+        }
+        if (speek === "five") {
+          speed = 5;
+        }
+        if (speek === "six") {
+          speed = 6;
+        }
+        if (speek === "seven") {
+          speed = 7;
+        }
+        if (speek === "eight") {
+          speed = 8;
+        }
+        if (speek === "nine") {
+          speed = 9;
+        }
+        if (speek === "z") {
+          if(speed > 0) {
+          speed -= 1;}
+        }
+        if (speek === "c") {
+          if(radio > 1) {radio -= 1; }
+        }
+        if (speek === "v") {
+          radio += 1;
+        }
+      }
+
+      var ball = new Ball();
+      var keyActions = {
+        32: "stop",
+        37: "left",
+        38: "up",
+        39: "right",
+        40: "down",
+        
+      };
+
+      
+      
+
+      $("body").keydown(function(event) {
+        var speek = speeds[event.keyCode];
+        var direction = keyActions[event.keyCode];
+        ball.setSpeed(speek);
+        ball.setDirection(direction);
+        
+      });
+
+      setInterval(function() {
+        ctx.clearRect(0, 0, width, height);
+        ball.draw();
+        ball.move();
+        ctx.strokeRect(0, 0, width, height);
+      }, 30);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  
+  <script>
+    function palmTree(n) {
+      var arr = '';
+      if(n == undefined) {
+        return 'p';
+      }
+      else if(n > 0) {
+        for(var i = 0; i < n; i++) {
+          arr += 'p';
+        }
+        return arr;
+      }
+      else if(n == 0) {
+        return arr;
+      }
+      else {
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

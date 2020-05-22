@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function autoTags(str, tags, url) {
+        var what = '';
+        url = url || "https/local.site/mysite/tag/";
+        for (var i = 0; i < tags.length; i++) {
+          if (str.indexOf(tags[i]) != -1) {
+            what = tags[i];
+            str = str.slice(0, str.indexOf(tags[i]));
+          }
+        }
+        url += what;
+        return str + `<a href="${url}">${'@'+what}</a>`;
+      }
+      console.log(autoTags("интересно изучать js", ['html', 'js']));
+    </script>
+  </body>
+</html>
